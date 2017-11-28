@@ -1,0 +1,48 @@
+#服务配置
+server:
+  port: 8080
+  context-path: /aiom
+#日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    com:
+     yyx:
+      website:
+       mapper: debug
+#context-listener监听
+context:
+  listener:
+    classes: com.yyx.aio.config.listener.ApplicationEventListener
+#数据库配置
+spring:
+  application:
+    name: aiom
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.188:3336/aiom?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 123.com
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    tomcat:
+      min-idle: 5
+      max-active: 20
+      initial-size: 5
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+    dbcp2:
+      cache-state: false
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:/mybatis/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    use-column-label: true
+  type-aliases-package: com.yyx.aio.entity
+#查看运行情况。是否敏感
+management:
+  security:
+    enabled: false
