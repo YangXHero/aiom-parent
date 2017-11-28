@@ -2,7 +2,7 @@
 <configuration>
 	<!--======================================= 本地变量 ======================================== -->
 	<!--在没有定义${LOG_HOME}系统变量的时候，可以设置此本地变量。提交测试、上线时，要将其注释掉，使用系统变量。 -->
-	<!-- <property name="LOG_HOME" value="D:/data/logs" /> -->
+	<property name="LOG_HOME" value="/data/logs" />
 
 	<!-- 应用名称：和统一配置中的项目代码保持一致（小写） -->
 	<property name="APP_NAME" value="log" />
@@ -37,19 +37,7 @@
 	</appender>
 	<!--=============================== 日志输出: 默认主业务日志 ====================================== -->
 	<logger name="org.springframework">
-		<level value="WARN" />
-	</logger>
-	<logger name="org.apache.shiro">
-		<level value="WARN" />
-	</logger>
-	<logger name="freemarker">
-		<level value="WARN" />
-	</logger>
-	<logger name="org.hibernate">
-		<level value="WARN" />
-	</logger>
-	<logger name="org.hibernate.SQL">
-		<level value="DEBUG" />
+		<level value="info" />
 	</logger>
 
 	<root level="DEBUG">
