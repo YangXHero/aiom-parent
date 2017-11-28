@@ -14,19 +14,19 @@
                         password="123456" />
 
         <!-- 生成实体对象 -->
-        <javaModelGenerator targetPackage="com.yyx.impose.entity"
+        <javaModelGenerator targetPackage="com.yyx.aio.entity"
                             targetProject="src/main/java" />
 
-        <!-- 生成mapper -->
-        <sqlMapGenerator targetPackage="com.yyx.impose.mapper"
-                         targetProject="src/main/java" />
-
         <!-- 生成mapper对应的xml文件 -->
-        <javaClientGenerator targetPackage="mybatis"
-                             targetProject="src/main/resources" type="XMLMAPPER" />
+        <sqlMapGenerator targetPackage="mybatis"
+                         targetProject="src/main/resources" />
 
-        <table alias="ol" schema="" tableName="menu"
-               domainObjectName="MenuEntity" enableCountByExample="false"
+        <!-- 生成mapper -->
+        <javaClientGenerator targetPackage="com.yyx.aio.mapper"
+                             targetProject="src/main/java" type="XMLMAPPER" />
+
+        <table alias="u" schema="" tableName="sys_user_tb"
+               domainObjectName="User" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
