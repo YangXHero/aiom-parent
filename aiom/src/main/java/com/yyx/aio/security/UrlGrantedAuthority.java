@@ -26,7 +26,7 @@ public class UrlGrantedAuthority implements GrantedAuthority {
         this.method = method;
     }
 
-    public UrlGrantedAuthority (String permissionUrl, String method) {
+    public UrlGrantedAuthority(String permissionUrl, String method) {
         this.permissionUrl = permissionUrl;
         this.method = method;
     }

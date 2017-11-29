@@ -1,8 +1,13 @@
 package com.yyx.aio.entity;
 
-import java.util.Date;
+import com.yyx.aio.common.entity.BaseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class User {
+import java.util.Collection;
+import java.util.List;
+
+public class User extends BaseEntity implements UserDetails{
     private Long id;
 
     private String loginName;
@@ -25,13 +30,48 @@ public class User {
 
     private Integer hasvalid;
 
-    private Long creatorId;
+    //权限？
+    private List<? extends GrantedAuthority> authorities;
 
-    private Date createTime;
+    public void setGrantedAuthorities(List<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 
-    private Long updatorId;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-    private Date updateTime;
+    @Override
+    public String getUsername() {
+        return this.userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        if (hasvalid == -1)
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
     public Long getId() {
         return id;
@@ -121,35 +161,4 @@ public class User {
         this.hasvalid = hasvalid;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
-    }
-
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getUpdatorId() {
-        return updatorId;
-    }
-
-    public void setUpdatorId(Long updatorId) {
-        this.updatorId = updatorId;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
