@@ -66,17 +66,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
-                .antMatchers("/loginError").permitAll()
                 /*静态资源*/
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
+                /*Swagger 开发环境*/
+                .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/v2/**").permitAll()
+                /*关闭权限验证*/
+                .antMatchers("/**").permitAll()
                 .antMatchers("/").permitAll()
-                /*关闭开发环境*/
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(this.unauthorizedHandler).accessDeniedHandler(this.accessDeniedHandler)
