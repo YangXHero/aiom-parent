@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yyx.aio.mapper.PostRASMapper">
+  <resultMap id="BaseResultMap" type="com.yyx.aio.entity.PostRAS">
+    <id column="t_id" jdbcType="BIGINT" property="id" />
+    <result column="t_post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="t_post_ weight" jdbcType="INTEGER" property="postWeight" />
+    <result column="t_post_user" jdbcType="BIGINT" property="postUser" />
+    <result column="t_post_time" jdbcType="TIMESTAMP" property="postTime" />
+    <result column="t_post_state" jdbcType="INTEGER" property="postState" />
+    <result column="t_post_operation" jdbcType="INTEGER" property="postOperation" />
+    <result column="t_create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="t_update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="t_state" jdbcType="INTEGER" property="state" />
+    <result column="t_operator_id" jdbcType="BIGINT" property="operatorId" />
+    <result column="t_post_flow" jdbcType="INTEGER" property="postFlow" />
+    <result column="t_post_length" jdbcType="INTEGER" property="postLength" />
+    <result column="t_post_width" jdbcType="INTEGER" property="postWidth" />
+    <result column="t_post_height" jdbcType="INTEGER" property="postHeight" />
+    <result column="t_post_type" jdbcType="BIGINT" property="postType" />
+    <result column="t_post_cust" jdbcType="BIGINT" property="postCust" />
+    <result column="t_post_money" jdbcType="DECIMAL" property="postMoney" />
+    <result column="t_updator_id" jdbcType="BIGINT" property="updatorId" />
+    <result column="t_createor" jdbcType="VARCHAR" property="createor" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    t.id as t_id, t.post_code as t_post_code, t."post_ weight" as "t_post_ weight", t.post_user as t_post_user, 
+    t.post_time as t_post_time, t.post_state as t_post_state, t.post_operation as t_post_operation, 
+    t.create_time as t_create_time, t.update_time as t_update_time, t.state as t_state, 
+    t.operator_id as t_operator_id, t.post_flow as t_post_flow, t.post_length as t_post_length, 
+    t.post_width as t_post_width, t.post_height as t_post_height, t.post_type as t_post_type, 
+    t.post_cust as t_post_cust, t.post_money as t_post_money, t.updator_id as t_updator_id, 
+    t.createor as t_createor
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from post_ras_** t
+    where t.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from post_ras_**
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yyx.aio.entity.PostRAS">
+    insert into post_ras_** (id, post_code, "post_ weight", 
+      post_user, post_time, post_state, 
+      post_operation, create_time, update_time, 
+      state, operator_id, post_flow, 
+      post_length, post_width, post_height, 
+      post_type, post_cust, post_money, 
+      updator_id, createor)
+    values (#{id,jdbcType=BIGINT}, #{postCode,jdbcType=VARCHAR}, #{postWeight,jdbcType=INTEGER}, 
+      #{postUser,jdbcType=BIGINT}, #{postTime,jdbcType=TIMESTAMP}, #{postState,jdbcType=INTEGER}, 
+      #{postOperation,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{operatorId,jdbcType=BIGINT}, #{postFlow,jdbcType=INTEGER}, 
+      #{postLength,jdbcType=INTEGER}, #{postWidth,jdbcType=INTEGER}, #{postHeight,jdbcType=INTEGER}, 
+      #{postType,jdbcType=BIGINT}, #{postCust,jdbcType=BIGINT}, #{postMoney,jdbcType=DECIMAL}, 
+      #{updatorId,jdbcType=BIGINT}, #{createor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yyx.aio.entity.PostRAS">
+    insert into post_ras_**
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="postCode != null">
+        post_code,
+      </if>
+      <if test="postWeight != null">
+        "post_ weight",
+      </if>
+      <if test="postUser != null">
+        post_user,
+      </if>
+      <if test="postTime != null">
+        post_time,
+      </if>
+      <if test="postState != null">
+        post_state,
+      </if>
+      <if test="postOperation != null">
+        post_operation,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="operatorId != null">
+        operator_id,
+      </if>
+      <if test="postFlow != null">
+        post_flow,
+      </if>
+      <if test="postLength != null">
+        post_length,
+      </if>
+      <if test="postWidth != null">
+        post_width,
+      </if>
+      <if test="postHeight != null">
+        post_height,
+      </if>
+      <if test="postType != null">
+        post_type,
+      </if>
+      <if test="postCust != null">
+        post_cust,
+      </if>
+      <if test="postMoney != null">
+        post_money,
+      </if>
+      <if test="updatorId != null">
+        updator_id,
+      </if>
+      <if test="createor != null">
+        createor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postWeight != null">
+        #{postWeight,jdbcType=INTEGER},
+      </if>
+      <if test="postUser != null">
+        #{postUser,jdbcType=BIGINT},
+      </if>
+      <if test="postTime != null">
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postState != null">
+        #{postState,jdbcType=INTEGER},
+      </if>
+      <if test="postOperation != null">
+        #{postOperation,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="postFlow != null">
+        #{postFlow,jdbcType=INTEGER},
+      </if>
+      <if test="postLength != null">
+        #{postLength,jdbcType=INTEGER},
+      </if>
+      <if test="postWidth != null">
+        #{postWidth,jdbcType=INTEGER},
+      </if>
+      <if test="postHeight != null">
+        #{postHeight,jdbcType=INTEGER},
+      </if>
+      <if test="postType != null">
+        #{postType,jdbcType=BIGINT},
+      </if>
+      <if test="postCust != null">
+        #{postCust,jdbcType=BIGINT},
+      </if>
+      <if test="postMoney != null">
+        #{postMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="updatorId != null">
+        #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createor != null">
+        #{createor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yyx.aio.entity.PostRAS">
+    update post_ras_**
+    <set>
+      <if test="postCode != null">
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postWeight != null">
+        "post_ weight" = #{postWeight,jdbcType=INTEGER},
+      </if>
+      <if test="postUser != null">
+        post_user = #{postUser,jdbcType=BIGINT},
+      </if>
+      <if test="postTime != null">
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postState != null">
+        post_state = #{postState,jdbcType=INTEGER},
+      </if>
+      <if test="postOperation != null">
+        post_operation = #{postOperation,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null">
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="postFlow != null">
+        post_flow = #{postFlow,jdbcType=INTEGER},
+      </if>
+      <if test="postLength != null">
+        post_length = #{postLength,jdbcType=INTEGER},
+      </if>
+      <if test="postWidth != null">
+        post_width = #{postWidth,jdbcType=INTEGER},
+      </if>
+      <if test="postHeight != null">
+        post_height = #{postHeight,jdbcType=INTEGER},
+      </if>
+      <if test="postType != null">
+        post_type = #{postType,jdbcType=BIGINT},
+      </if>
+      <if test="postCust != null">
+        post_cust = #{postCust,jdbcType=BIGINT},
+      </if>
+      <if test="postMoney != null">
+        post_money = #{postMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="updatorId != null">
+        updator_id = #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createor != null">
+        createor = #{createor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yyx.aio.entity.PostRAS">
+    update post_ras_**
+    set post_code = #{postCode,jdbcType=VARCHAR},
+      "post_ weight" = #{postWeight,jdbcType=INTEGER},
+      post_user = #{postUser,jdbcType=BIGINT},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      post_state = #{postState,jdbcType=INTEGER},
+      post_operation = #{postOperation,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      post_flow = #{postFlow,jdbcType=INTEGER},
+      post_length = #{postLength,jdbcType=INTEGER},
+      post_width = #{postWidth,jdbcType=INTEGER},
+      post_height = #{postHeight,jdbcType=INTEGER},
+      post_type = #{postType,jdbcType=BIGINT},
+      post_cust = #{postCust,jdbcType=BIGINT},
+      post_money = #{postMoney,jdbcType=DECIMAL},
+      updator_id = #{updatorId,jdbcType=BIGINT},
+      createor = #{createor,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
