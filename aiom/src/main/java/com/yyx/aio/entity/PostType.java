@@ -1,5 +1,12 @@
 package com.yyx.aio.entity;
 
+import lombok.Data;
+/**
+ * @author wuwei
+ * @time 2017 11 30
+ */
+
+@Data
 public class PostType {
     private Long id;
 
@@ -7,27 +14,4 @@ public class PostType {
 
     private String typeCode;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    public String getTypeCode() {
-        return typeCode;
-    }
-
-    public void setTypeCode(String typeCode) {
-        this.typeCode = typeCode;
-    }
 }

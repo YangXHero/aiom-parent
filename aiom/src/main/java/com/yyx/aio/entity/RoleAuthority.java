@@ -1,5 +1,11 @@
 package com.yyx.aio.entity;
 
+import lombok.Data;
+/**
+ * @author wuwei
+ * @time 2017 11 30
+ */
+@Data
 public class RoleAuthority {
     private Long id;
 
@@ -7,27 +13,4 @@ public class RoleAuthority {
 
     private Long authId;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    public Long getAuthId() {
-        return authId;
-    }
-
-    public void setAuthId(Long authId) {
-        this.authId = authId;
-    }
 }
