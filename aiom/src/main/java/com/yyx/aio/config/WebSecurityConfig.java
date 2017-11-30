@@ -76,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/favicon.ico").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/").permitAll()
+                /*关闭开发环境*/
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(this.unauthorizedHandler).accessDeniedHandler(this.accessDeniedHandler)
