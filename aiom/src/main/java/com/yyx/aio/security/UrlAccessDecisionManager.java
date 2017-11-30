@@ -26,9 +26,6 @@ public class UrlAccessDecisionManager implements AccessDecisionManager {
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
         String url, method;
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
         if ("anonymousUser".equals(authentication.getPrincipal())
                 || matchers("/images/**", request)
                 || matchers("/js/**", request)
