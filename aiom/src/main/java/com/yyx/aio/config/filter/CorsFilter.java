@@ -5,6 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * @Description: 支持跨域访问
+ * @author Yangkai 2017/11/30 14:45
+ * @return
+ */
 public class CorsFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

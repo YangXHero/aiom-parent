@@ -19,6 +19,11 @@ import java.util.Optional;
 This filter checks if there is a token in the Request service header and the token is not expired
 it is applied to all the routes which are protected
 */
+/**
+ * @Description: 支持token验证
+ * @author Yangkai 2017/11/30 14:45
+ * @return 
+ */
 public class VerifyTokenFilter extends GenericFilterBean {
 
     private final TokenUtil tokenUtil;

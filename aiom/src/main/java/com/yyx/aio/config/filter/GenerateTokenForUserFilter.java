@@ -25,6 +25,11 @@ import java.io.*;
 
 
 /* This filter maps to /login and tries to validate the username and password */
+/**
+ * @Description: 实现登录拦截。登录。
+ * @author Yangkai 2017/11/30 14:45
+ * @return
+ */
 public class GenerateTokenForUserFilter extends AbstractAuthenticationProcessingFilter {
 
     private TokenUtil tokenUtil;

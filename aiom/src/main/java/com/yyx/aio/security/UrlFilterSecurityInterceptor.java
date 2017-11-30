@@ -12,7 +12,9 @@ import javax.servlet.*;
 import java.io.IOException;
 
 /**
- * Created by yangkai on 17/2/7.
+ * @Description: filter
+ * @author Yangkai 2017/11/30 14:47
+ * @return
  */
 @Service
 public class UrlFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {

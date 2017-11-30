@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by yangkai on 17/2/7.
+ * @Description: 是西安UserDetailsService 中的登录方法。
+ *  获取权限
+ * @author Yangkai 2017/11/30 14:48
+ * @return
  */
 @Service
 public class UrlUserService implements UserDetailsService {

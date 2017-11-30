@@ -3,7 +3,9 @@ package com.yyx.aio.security;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * Created by yangkai on 17/2/15.
+ * @Description: 重写Authority 保存规则。
+ * @author Yangkai 2017/11/30 14:47
+ * @return
  */
 public class UrlGrantedAuthority implements GrantedAuthority {
 

@@ -16,7 +16,9 @@ import java.util.Collection;
 
 
 /**
- * Created by yangkai on 17/1/19.
+ * @Description: 路径拦截
+ * @author Yangkai 2017/11/30 14:46
+ * @return
  */
 @Service
 public class UrlAccessDecisionManager implements AccessDecisionManager {

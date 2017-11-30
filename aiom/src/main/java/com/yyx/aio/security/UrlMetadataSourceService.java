@@ -11,7 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by yangkai on 17/1/19.
+ * @Description:
+ * @author Yangkai 2017/11/30 14:48
+ * @return
  */
 @Service
 public class UrlMetadataSourceService implements
