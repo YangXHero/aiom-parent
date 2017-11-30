@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/loginError").permitAll()
                 /*静态资源*/
                 .antMatchers("/images/**").permitAll()
@@ -45,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
+                .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/").permitAll()
                 .anyRequest().fullyAuthenticated()
                 .and().formLogin().successForwardUrl("/users")
