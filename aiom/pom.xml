@@ -33,6 +33,7 @@
         <commons.version>2.6</commons.version>
         <swagger.version>2.6.1</swagger.version>
         <swagger.ui.version>2.6.1</swagger.ui.version>
+        <webtoken.version>0.7.0</webtoken.version>
 	</properties>
 
 	<dependencies>
@@ -73,7 +74,7 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
-			<version>0.7.0</version>
+			<version>${webtoken.version}</version>
 		</dependency>
 
 		<dependency>
