@@ -5,7 +5,7 @@ import org.springframework.security.access.ConfigAttribute;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by yangyibo on 17/2/15.
+ * Created by yangkai on 17/2/15.
  */
 public class UrlConfigAttribute implements ConfigAttribute {
 
