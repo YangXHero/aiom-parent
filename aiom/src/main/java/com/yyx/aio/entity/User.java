@@ -16,8 +16,6 @@ public class User extends BaseEntity implements UserDetails{
 
     private String userName;
 
-    private Long deptId;
-
     private Integer errorPass;
 
     private String password;
@@ -28,7 +26,15 @@ public class User extends BaseEntity implements UserDetails{
 
     private String telephone;
 
-    private Integer hasvalid;
+    private Integer state;
+
+    private String userCode;
+
+    private Long userOrg;
+
+    private Integer loginErrorTimes;
+
+    private Integer lockStatus;
 
     //权限？
     private List<? extends GrantedAuthority> authorities;
@@ -54,7 +60,7 @@ public class User extends BaseEntity implements UserDetails{
 
     @Override
     public boolean isAccountNonLocked() {
-        if (hasvalid == -1)
+        if (state == -1)
         {
             return false;
         }
@@ -105,14 +111,6 @@ public class User extends BaseEntity implements UserDetails{
         this.userName = userName;
     }
 
-    public Long getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
-
     public Integer getErrorPass() {
         return errorPass;
     }
@@ -153,12 +151,47 @@ public class User extends BaseEntity implements UserDetails{
         this.telephone = telephone;
     }
 
-    public Integer getHasvalid() {
-        return hasvalid;
+    public Integer getState() {
+        return state;
     }
 
-    public void setHasvalid(Integer hasvalid) {
-        this.hasvalid = hasvalid;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public Long getUserOrg() {
+        return userOrg;
+    }
+
+    public void setUserOrg(Long userOrg) {
+        this.userOrg = userOrg;
+    }
+
+    public Integer getLoginErrorTimes() {
+        return loginErrorTimes;
+    }
+
+    public void setLoginErrorTimes(Integer loginErrorTimes) {
+        this.loginErrorTimes = loginErrorTimes;
+    }
+
+    public Integer getLockStatus() {
+        return lockStatus;
+    }
+
+    public void setLockStatus(Integer lockStatus) {
+        this.lockStatus = lockStatus;
+    }
+
+    public void setAuthorities(List<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 }

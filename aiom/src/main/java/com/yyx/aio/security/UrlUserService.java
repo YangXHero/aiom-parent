@@ -33,8 +33,8 @@ public class UrlUserService implements UserDetailsService {
         if (user != null) {
             List<Permission> permissions = permissionService.getByUserId(user.getId());
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            /*UrlGrantedAuthority urlGrantedAuthority = new UrlGrantedAuthority("/users","ALL");
-            grantedAuthorities.add(urlGrantedAuthority);*/
+            UrlGrantedAuthority urlGrantedAuthority = new UrlGrantedAuthority("/users","ALL");
+            grantedAuthorities.add(urlGrantedAuthority);
             if(StringUtil.isNotNull(permissions)){
                 for (Permission permission : permissions) {
                     if (permission != null && permission.getName()!=null) {
