@@ -3,7 +3,7 @@ package com.yyx.aio.security;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
- * Created by yangyibo on 17/2/15.
+ * Created by yangkai on 17/2/15.
  */
 public class UrlGrantedAuthority implements GrantedAuthority {
 
