@@ -9,7 +9,7 @@ import java.util.Date;
  * @time 2017 11 30
  */
 @Data
-public class PostRAS {
+public class Post {
     private Long id;
 
     private String postCode;

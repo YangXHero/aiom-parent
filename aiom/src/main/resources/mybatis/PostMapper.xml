@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yyx.aio.mapper.PostRASMapper">
-  <resultMap id="BaseResultMap" type="com.yyx.aio.entity.PostRAS">
+<mapper namespace="com.yyx.aio.mapper.PostMapper">
+  <resultMap id="BaseResultMap" type="com.yyx.aio.entity.Post">
     <id column="t_id" jdbcType="BIGINT" property="id" />
     <result column="t_post_code" jdbcType="VARCHAR" property="postCode" />
     <result column="t_post_ weight" jdbcType="INTEGER" property="postWeight" />
@@ -42,7 +42,7 @@
     delete from post_ras_**
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yyx.aio.entity.PostRAS">
+  <insert id="insert" parameterType="com.yyx.aio.entity.Post">
     insert into post_ras_** (id, post_code, "post_ weight", 
       post_user, post_time, post_state, 
       post_operation, create_time, update_time, 
@@ -58,7 +58,7 @@
       #{postType,jdbcType=BIGINT}, #{postCust,jdbcType=BIGINT}, #{postMoney,jdbcType=DECIMAL}, 
       #{updatorId,jdbcType=BIGINT}, #{createor,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yyx.aio.entity.PostRAS">
+  <insert id="insertSelective" parameterType="com.yyx.aio.entity.Post">
     insert into post_ras_**
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -185,7 +185,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yyx.aio.entity.PostRAS">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yyx.aio.entity.Post">
     update post_ras_**
     <set>
       <if test="postCode != null">
@@ -248,7 +248,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yyx.aio.entity.PostRAS">
+  <update id="updateByPrimaryKey" parameterType="com.yyx.aio.entity.Post">
     update post_ras_**
     set post_code = #{postCode,jdbcType=VARCHAR},
       "post_ weight" = #{postWeight,jdbcType=INTEGER},
@@ -271,4 +271,10 @@
       createor = #{createor,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectPostListByInfo" resultMap="BaseResultMap" parameterType="com.yyx.aio.entity.Post">
+    select
+    <include refid="Base_Column_List" />
+    from post_ras_** t
+    where t.post_code = #{postCode,jdbcType=VARCHAR}
+  </select>
 </mapper>

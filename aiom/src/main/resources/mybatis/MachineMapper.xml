@@ -212,4 +212,17 @@
       creator = #{creator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectMachineListByInfo" resultMap="BaseResultMap" parameterType="com.yyx.aio.entity.Machine">
+    select
+    <include refid="Base_Column_List" />
+    from machine t
+    <where>
+      <if test="macName!=null">
+        t.mac_name = #{macName,jdbcType=VARCHAR}
+      </if>
+      <if test="macWorkTime!=null">
+        AND t.mac_work_time = #{macWorkTime}
+      </if>
+    </where>
+  </select>
 </mapper>
