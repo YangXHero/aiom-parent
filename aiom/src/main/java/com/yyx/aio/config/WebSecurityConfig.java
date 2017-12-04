@@ -1,26 +1,33 @@
 package com.yyx.aio.config;
 
 
-import com.yyx.aio.common.MD5Util;
 import com.yyx.aio.config.filter.CorsFilter;
 import com.yyx.aio.config.filter.GenerateTokenForUserFilter;
 import com.yyx.aio.config.filter.VerifyTokenFilter;
 import com.yyx.aio.config.handler.EntryPointUnauthorizedHandler;
 import com.yyx.aio.config.handler.MyAccessDeniedHandler;
+import com.yyx.aio.config.identity.MyPasswordEncoder;
 import com.yyx.aio.config.identity.TokenUtil;
+import com.yyx.aio.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.ConcurrentSessionFilter;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.security.web.session.SimpleRedirectSessionInformationExpiredStrategy;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -37,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
+    @Resource
     SessionRegistry sessionRegistry;
     @Autowired
     private TokenUtil tokenUtil;
@@ -60,15 +67,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password").successForwardUrl("/users")
                 .and()
+                .addFilterAt(new ConcurrentSessionFilter(sessionRegistry,sessionInformationExpiredStrategy()),ConcurrentSessionFilter.class)
                 .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
                 .addFilterBefore(new VerifyTokenFilter(tokenUtil), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new GenerateTokenForUserFilter("/login", authenticationManager(), tokenUtil), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new GenerateTokenForUserFilter("/login", authenticationManager(), tokenUtil,sessionRegistry), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/loginpage").permitAll()
+                .antMatchers("/login.html").permitAll()
                 .antMatchers("/logout").permitAll()
                 /*静态资源*/
                 .antMatchers("/images/**").permitAll()
-                .antMatchers("/js/**").permitAll()
+                .antMatchers("/static/js/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
@@ -112,28 +122,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setHideUserNotFoundExceptions(false);
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new PasswordEncoder() {
-
+        provider.setSaltSource(new SaltSource() {
+            @Override
+            public Object getSalt(UserDetails user) {
+                User user1 = (User) user;
+                return "aiom";
+            }
+        });
+        provider.setPasswordEncoder(new MyPasswordEncoder());
+        /*provider.setPasswordEncoder(new PasswordEncoder() {
             @Override
             public String encode(CharSequence rawPassword) {
                 return MD5Util.encode((String) rawPassword);
             }
 
-            /**
+            *//**
              * rawPassword 是登录密码
              * encodedPassword 数据库密码
-             * */
+             * *//*
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
                 return encodedPassword.equals(encode(rawPassword));
             }
-        });
+        });*/
         return provider;
     }
-
+    //session失效跳转
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
+        return new SimpleRedirectSessionInformationExpiredStrategy("/login");
+    }
     @Bean
     public SessionRegistry getSessionRegistry() {
         SessionRegistry sessionRegistry = new SessionRegistryImpl();
         return sessionRegistry;
     }
+
+
 }
